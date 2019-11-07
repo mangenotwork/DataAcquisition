@@ -1,0 +1,145 @@
+1.  商品信息表
+	
+	收录商品链接  主(不可重复)
+	商品名称
+	商品价格
+	商品价格范围
+	商品销量
+	商品来源
+	收录时间
+	商品介绍
+	商品分类uuid  [一对多]
+	商品属性uuid  [一对多]
+	商品总评论数
+	商品图片uuid  [一对多]
+	店家名称
+	店家信用
+	店家评分
+	店家联系方式
+
+ 表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_info_table(
+	cod_url char(255) AUTO_INCREMENT,/* 收录商品链接  主(不可重复) */
+	cod_name char(80)  NOT NULL,/* 商品名称 */
+	cod_price INT NOT NULL,/* 商品价格 */
+	cod_price_range char(100) NOT NULL,/* 商品价格范围 */
+	cod_sales INT NOT NULL,/* 商品销量 */
+	cod_platform char(20) NOT NULL,/* 商品来源 */
+	cod_time DATETIME NOT NULL,/* 收录时间 */
+	cod_note TEXT NOT NULL default 'NULL',/* 商品介绍 */
+	cod_class_uuid char(30) NOT NULL,/* 商品分类uuid */
+	cod_property_uuid char(30) NOT NULL,/* 商品属性uuid */
+	cod_comments_num INT NOT NULL,/* 商品总评论数 */
+	cod_img_uuid INT NOT NULL,/* 商品图片uuid */
+	cod_shop_name char(50) NOT NULL,/* 店家名称 */
+	cod_shop_credit char(50) NOT NULL,/* 店家信用 */
+	cod_shop_grade INT NOT NULL,/* 店家评分 */
+	cod_shop_call char(120) NOT NULL,/* 店家联系方式 */
+	user_registor_time DATETIME NOT NULL,
+	PRIMARY KEY (cod_url)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+2.  商品分类表
+	分类自增id    主(不可重复)
+	商品分类uuid
+	商品分类信息
+
+ 表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_class_table(
+	class_uuid char(30) AUTO_INCREMENT,/* 分类自增id    主(不可重复) */
+	cod_class_uuid char(30)  NOT NULL,/* 商品分类uuid */
+	class_val char(30)  NOT NULL,/* 商品分类信息 */
+
+	PRIMARY KEY (class_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+3.  商品商品属性表
+	属性id  主(不可重复)
+	商品属性uuid
+	属性名称
+	属性值
+
+表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_property_table(
+	property_uuid char(30) AUTO_INCREMENT,/* 属性id    主(不可重复) */
+	cod_property_uuid char(30)  NOT NULL,/* 商品属性uuid */
+	property_name char(30)  NOT NULL,/* 属性名称 */
+	property_val char(250)  NOT NULL,/* 属性值 */
+
+	PRIMARY KEY (property_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+4.  商品图片uuid
+	图像id  主(不可重复)
+	商品图片uuid
+	图片地址
+
+表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_img_table(
+	img_path_uuid char(30) AUTO_INCREMENT,/* 图像id    主(不可重复) */
+	cod_img_uuid char(30)  NOT NULL,/* 商品图片uuid */
+	img_path char(255)  NOT NULL,/* 图片地址 */
+
+	PRIMARY KEY (img_path_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+5.  一级分类表
+	一级类别uuid 
+	分类值
+
+表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_classes_1_table(
+	cod_classes_1_uuid char(30) AUTO_INCREMENT,/* 一级类别uuid    主(不可重复) */
+	cod_classes_1_val char(30)  NOT NULL,/* 分类值 */
+
+	PRIMARY KEY (cod_classes_1_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+6.  二级分类表
+    二级类别uuid
+    父类别uuid
+    分类值
+
+表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_classes_2_table(
+	cod_classes_2_uuid char(30) AUTO_INCREMENT,/* 一级类别uuid    主(不可重复) */
+	cod_classes_parent_uuid char(30) NOT NULL,/* 一级类别uuid    主(不可重复) */
+	cod_classes_2_val char(30)  NOT NULL,/* 分类值 */
+
+	PRIMARY KEY (cod_classes_2_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+7.  三级分类表
+	三级类别uuid 
+	父类别uuid
+	分类值
+
+表结构  /*  */    浪费空间节约时间策略
+CREATE TABLE cod_classes_3_table(
+	cod_classes_3_uuid char(30) AUTO_INCREMENT,/* 一级类别uuid    主(不可重复) */
+	cod_classes_parent_uuid char(30) NOT NULL,/* 一级类别uuid    主(不可重复) */
+	cod_classes_3_val char(30)  NOT NULL,/* 分类值 */
+
+	PRIMARY KEY (cod_classes_3_uuid)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
